@@ -1,8 +1,14 @@
 #pragma once
 
 /*
-   Put an explination.
-*/
+   Simply a class that holds a struct; this struct defines methods for 
+   searching and opening text files. It also holds the method that is used for 
+   the spell check of the document text. 
+
+   If you end up changing text files you need to update the strings in main
+   that holds the current text files path.
+*/ 
+
 
 #include <iostream>
 #include <fstream>
