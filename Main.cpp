@@ -1,7 +1,17 @@
-#include <iostream>
+#include "File.h"
 
 
 int main()
 {
-	std::cout << "Hello world" << std::endl;
+	//Variables.
+	RFile file;
+	std::string dictionaryPath{ "dictionary.txt" };
+	std::string documentPath{ "Doc.txt" };
+
+	//Searching for both text files.
+	if (file.FetchText(dictionaryPath, file.dictionaryWords) && file.FetchText(documentPath, file.documentWords))
+	{
+		//Searching document text for errors.
+		file.SearchDocument(file.dictionaryWords, file.documentWords);
+	}
 }
