@@ -1,6 +1,12 @@
 #include "File.h"
+#include <algorithm>
+#include <cctype>
 
-                      
+
+
+/*
+   Author signatures: Edward Davis.
+*/
 bool RFile::FetchText(std::string filePath, std::vector<std::string>& wordCache)
 {
 	if (filePath.empty()) return false;
@@ -15,10 +21,27 @@ bool RFile::FetchText(std::string filePath, std::vector<std::string>& wordCache)
 			//Caching all found words in the file.
 			wordCache.push_back(foundWord);
 		}
+		return true; // Return true to indicate the file was successfully opened andwords were Loaded
 	}
 	else { std::cerr << "[-] Failed to open file at " << filePath << std::endl; return false; }
 }
 
+
+/*
+   Author signatures: Karon Eley.
+*/
+std::string RFile::toLower(const std::string& str)
+{
+	std::string lowerStr = str;
+	std::transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(),
+		[](unsigned char c) {return std::tolower(c); });
+	return lowerStr;
+}
+
+
+/*
+   Author signatures: Karon Eley, Edward Davis.
+*/
 void RFile::SearchDocument(std::vector<std::string>& dictionaryCache, std::vector<std::string>& documentCache)
 {
 	if (dictionaryCache.empty() && documentCache.empty()) return;
@@ -29,10 +52,10 @@ void RFile::SearchDocument(std::vector<std::string>& dictionaryCache, std::vecto
 		bool realWordFound = false;
 		for (int j{}; j < dictionaryCache.size(); j++)
 		{
-			if (documentCache.at(i) == dictionaryCache.at(j)) 
-			{ 
+			if (toLower(documentCache.at(i)) == toLower(dictionaryCache.at(j)))
+			{
 				realWordFound = true;
-				break; 
+				break;
 			}
 		}
 		if (!realWordFound)

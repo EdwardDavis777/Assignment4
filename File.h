@@ -30,6 +30,11 @@ struct RFile
 	 */
 	 void SearchDocument(std::vector<std::string>& dictionaryCache, std::vector<std::string>& DocumentCache);
 
+	 /*
+	    Converts a string to Lowercase for case-insensitive comparison
+	 */
+	 std::string toLower(const std::string& str);
+
 	RFile() :
 	dictionaryWords(), documentWords()
 	{ }
